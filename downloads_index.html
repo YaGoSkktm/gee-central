@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Administrativo - G&E</title>
+    <style>
+        :root {
+            --primary-blue: #002060;
+            --secondary-blue: #003399;
+            --accent-yellow: #FFC000;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--bg-color);
+            width: 100%;
+            padding: 30px 0 10px 0;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 320px;
+            height: auto;
+            mix-blend-mode: multiply; 
+        }
+
+        .header-line {
+            height: 4px;
+            background-color: var(--accent-yellow);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1000px; 
+            width: 90%;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        /* Classes para controlar as "páginas" no mesmo ficheiro */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .aviso {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-left: 5px solid var(--accent-yellow);
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Grelha de botões principais (Home) */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Grelhas dos Formulares e E-mails */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: var(--secondary-blue);
+            text-align: center;
+        }
+
+        .email-text {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #555;
+            margin: 10px 0;
+            /* Esta é a linha mágica que resolve o problema do texto sair da caixa! */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+
+        /* Botões */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            margin-top: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 40px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-voltar:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="LogoDaEmpresaSemFundo_2.png" alt="Logo G&E Administrativa" class="logo">
+        <div class="header-line"></div>
+    </header>
+
+    <!-- PÁGINA 1: HOME (Menu Principal) -->
+    <div id="page-home" class="page active container">
+        <h1>Central de Operações</h1>
+        <p class="subtitle">Bem-vindo ao Hub da Empresa Simulada G&E</p>
+
+        <div class="main-menu">
+            <button class="btn" onclick="navegar('page-formularios')">📝 Formulários</button>
+            <button class="btn" onclick="navegar('page-emails')">📧 E-mails dos Setores</button>
+            <a href="Modelo_Relatorio_Mensal.docx" download class="btn btn-outline">📥 Baixar Arquivo do Relatório Mensal .docx</a>
+        </div>
+    </div>
+
+
+    <!-- PÁGINA 2: FORMULÁRIOS -->
+    <div id="page-formularios" class="page container">
+        <h1>Formulários Setoriais</h1>
+        <div class="aviso">
+            ⚠️ Atenção: O Formulário de Líder só pode ser respondido utilizando o seu e-mail empresarial.
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Financeiro</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4RFq6l0Z7T1LIpbmgKGq8f4QtMXsmOVzDQAkx06_n-3BeMQ/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf8N4GZiK1eTf09fLS880ux-OZZb4rq7dX4pyM0QwX3sQQN_w/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Recursos Humanos</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScrImYLu0hm-9S_ajfEFbEVvjfxLJOZjyjg6pFom8Um_WM4kA/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScllUGFWz9dUqRDlZ3N718lM0w7UPpAdyPNWowNkSOpFYsMMQ/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Compras</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-6x3RZiuzuZfUtxv7Ygfzfe3EvKIvuZazd0sogxpzHZeO8Q/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxDgApYwfpsbYrhucma3QQSFPLjBVyePaZlxzkAFTeGmZJfw/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Estoque</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3sUbOAR-JlTaMisAKDHoSVMTZ4cXoisEdEQslzX3ITEqdDA/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1Nw9nGz1Gw611mZn5T1wODXEMXRLpAFysvJ_xotQQ0kkSPg/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Gestão de Contratos</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeM_l9_m4JlFZY0ZP8bX_bxvBb0GlvUO-9hARlOBei0hgmp0Q/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFCXpvwcSCuZFqtNc8BSNluQtY3whvHFP3VHYHBfvIknuMIA/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Arquivos e Doc.</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBKTp8ELkBgf4T54hxxiCU0Ff-IaoU5Tu-AA0I74bJplu4RQ/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSclea4R3N9BNYzUcbiZK0iwpdpxvAPfXCoXLepIBe-2dKtnng/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card">
+                <h3>Atendimento e Rec.</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWNubq88NUhBjFKaUop_IQBr7X2Vw2ffy_1UBlpKNf5RhGJQ/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc4fv93LmGFz4H5m8BOn-Tkm4cU70tLK4kVWvhSVSbfKWvvAw/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+            <div class="card" style="border-top-color: var(--accent-yellow);">
+                <h3>Administrativo</h3>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSczY1bhuMiOFu7jGuFulwgLTg4sdzY-K7pKaQgfnEJLyBvCzw/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn">Formulário de Líder</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5fD7Koc0kcNblmZWMIECyQPw5QEVTHqCF4Z3bsiXUdGvXmw/viewform?usp=sharing&ouid=100223176524791099991" target="_blank" class="btn btn-outline">Formulário da equipe (anônimo)</a>
+            </div>
+        </div>
+
+        <button class="btn-voltar" onclick="navegar('page-home')">⬅ Voltar ao Início</button>
+    </div>
+
+
+    <!-- PÁGINA 3: E-MAILS -->
+    <div id="page-emails" class="page container">
+        <h1>Lista de Contactos Oficiais</h1>
+        <p class="subtitle">Consulte aqui os e-mails de comunicação de cada setor</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Financeiro</h3>
+                <p class="email-text">Financeirogeadministrativa@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Recursos Humanos</h3>
+                <p class="email-text">gee.recursohumanos@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Compras</h3>
+                <p class="email-text">comprass.geeadm@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Estoque</h3>
+                <p class="email-text">Estoquegeeadm@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Gestão de Contratos</h3>
+                <p class="email-text">gestaoservicos.contratosgeead@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Arquivos e Doc.</h3>
+                <p class="email-text">arquivosedocumentosgeeadm@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Atendimento e Rec.</h3>
+                <p class="email-text">atendimentoerecepcao.geeadm@gmail.com</p>
+            </div>
+            <div class="card" style="border-top-color: var(--accent-yellow);">
+                <h3>Administrativo (Gestão)</h3>
+                <p class="email-text">gee.administrativa@gmail.com</p>
+            </div>
+        </div>
+
+        <button class="btn-voltar" onclick="navegar('page-home')">⬅ Voltar ao Início</button>
+    </div>
+
+    <footer>
+        <p>Desenvolvido pelo Setor Administrativo G&E - 2026</p>
+    </footer>
+
+    <script>
+        function navegar(idPaginaDestino) {
+            const paginas = document.querySelectorAll('.page');
+            paginas.forEach(pagina => {
+                pagina.classList.remove('active');
+            });
+            const paginaDestino = document.getElementById(idPaginaDestino);
+            paginaDestino.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
