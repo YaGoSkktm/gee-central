@@ -6,6 +6,32 @@
     <title>Hub Administrativo - G&E</title>
     <style>
 
+        .detalhe-lateral-direito {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100vh; 
+        width: auto;
+        object-fit: contain; /* Garante que ela não fique esmagada */
+        z-index: -1; /* Garante que fique atrás de tudo */
+        pointer-events: none; /* Impede que atrapalhe os botões de serem clicados */
+    }
+
+    .detalhe-lateral-esquerdo {
+    position: fixed;
+    left: 0; /* Coloca na lateral esquerda */
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1); /* O scaleX(-1) cria o efeito de espelho! */
+    height: 100vh;
+    width: auto;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+
         :root {
             --primary-blue: #002060;
             --secondary-blue: #003399;
@@ -31,7 +57,8 @@
         }
 
         header {
-            background: linear-gradient(110deg, #aeb6c2 0%, #d0d4da 50%, #aab3c0 100%);
+            /* Degradê: começa azul, fica branco no centro e termina azul */
+            background: linear-gradient(90deg, #101c30 0%, #2a4875 25%, #ffffff 45%, #ffffff 55%, #2a4875 75%, #101c30 100%);
             width: 100%;
             padding: 10px 0 0;
             text-align: center;
@@ -70,10 +97,10 @@
         }
 
         #page-home {
-            max-width: 435px;
+            max-width: 650px; /* Largura da caixa aumentada */
             width: calc(100% - 36px);
-            margin: 22px auto;
-            padding: 24px 28px 28px;
+            margin: 35px auto;
+            padding: 45px 40px; /* Espaço interno aumentado */
             background: linear-gradient(145deg, rgba(24, 39, 61, 0.98), rgba(15, 28, 47, 0.98));
             border: 1px solid rgba(91, 145, 198, 0.9);
             border-right-color: rgba(255, 192, 0, 0.75);
@@ -90,14 +117,14 @@
         h1 {
             color: #f5f7fb;
             margin: 0 0 10px;
-            font-size: 1.45rem;
+            font-size: 1.6rem;
             font-weight: 700;
         }
 
         p.subtitle {
             color: #aeb9c9;
-            margin: 0 0 24px;
-            font-size: 0.9em;
+            margin: 0 0 32px;
+            font-size: 1em;
         }
 
         .aviso {
@@ -114,8 +141,8 @@
         .main-menu {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            max-width: 300px;
+            gap: 16px;
+            max-width: 450px; /* Botoes aumentados para acompanhar a caixa */
             margin: 0 auto;
         }
 
@@ -161,15 +188,15 @@
             color: white;
             text-align: center;
             text-decoration: none;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border-radius: 7px;
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: 700;
             transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
             border: 1px solid rgba(73, 133, 203, 0.28);
             cursor: pointer;
             gap: 8px;
-            min-height: 42px;
+            min-height: 46px;
         }
 
         .btn:hover {
@@ -207,7 +234,7 @@
 
         .btn-voltar:hover {
             background-color: var(--primary-blue);
-            color: white;
+            color: rgb(230, 203, 83);
         }
 
         footer {
@@ -232,7 +259,8 @@
     </style>
 </head>
 <body>
-
+    <img src="img/imagem_3-removebg-preview.png" class="detalhe-lateral-esquerdo">
+    <img src="img/imagem_3-removebg-preview.png" class="detalhe-lateral-direito">
     <header>
         <img src="LogoDaEmpresaSemFundo_2.png" alt="Logo G&E Administrativa" class="logo">
         <div class="header-line"></div>
@@ -250,6 +278,7 @@
         </div>
     </div>
 
+    <img src="img/imagem_3-removebg-preview.png" alt="Textura Amarela Lateral" class="detalhe-lateral-esquerdo">
 
     <!-- PÁGINA 2: FORMULÁRIOS -->
     <div id="page-formularios" class="page container">
@@ -339,8 +368,8 @@
                 <h3>Atendimento e Rec.</h3>
                 <p class="email-text">atendimentoerecepcao.geeadm@gmail.com</p>
             </div>
-             <div class="card">
-                <h3>Administrativo</h3>
+            <div class="card" style="border-top-color: var(--accent-yellow);">
+                <h3>Administrativo (Gestão)</h3>
                 <p class="email-text">gee.administrativa@gmail.com</p>
             </div>
         </div>
