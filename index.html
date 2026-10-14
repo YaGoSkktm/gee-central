@@ -7,30 +7,31 @@
     <style>
 
         .detalhe-lateral-direito {
-        position: fixed;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 100vh; 
-        width: auto;
-        object-fit: contain; /* Garante que ela não fique esmagada */
-        z-index: -1; /* Garante que fique atrás de tudo */
-        pointer-events: none; /* Impede que atrapalhe os botões de serem clicados */
-    }
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100vh; 
+            width: auto;
+            max-width: 40vw; /* Garante que ocupe no máximo 40% da tela, impedindo que encoste na outra */
+            object-fit: contain; 
+            z-index: -1; 
+            pointer-events: none; 
+        }
 
-    .detalhe-lateral-esquerdo {
-    position: fixed;
-    left: 0; /* Coloca na lateral esquerda */
-    top: 50%;
-    transform: translateY(-50%) scaleX(-1); /* O scaleX(-1) cria o efeito de espelho! */
-    height: 100vh;
-    width: auto;
-    object-fit: cover;
-    z-index: -1;
-    opacity: 0.8;
-    pointer-events: none;
-}
-
+        .detalhe-lateral-esquerdo {
+            position: fixed;
+            left: 0; 
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1); 
+            height: 100vh;
+            width: auto;
+            max-width: 40vw; /* Garante que ocupe no máximo 40% da tela */
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.8;
+            pointer-events: none;
+        }
 
         :root {
             --primary-blue: #002060;
@@ -57,7 +58,6 @@
         }
 
         header {
-            /* Degradê: começa azul, fica branco no centro e termina azul */
             background: linear-gradient(90deg, #101c30 0%, #2a4875 25%, #ffffff 45%, #ffffff 55%, #2a4875 75%, #101c30 100%);
             width: 100%;
             padding: 10px 0 0;
@@ -97,10 +97,10 @@
         }
 
         #page-home {
-            max-width: 650px; /* Largura da caixa aumentada */
+            max-width: 650px; 
             width: calc(100% - 36px);
             margin: 35px auto;
-            padding: 45px 40px; /* Espaço interno aumentado */
+            padding: 45px 40px; 
             background: linear-gradient(145deg, rgba(24, 39, 61, 0.98), rgba(15, 28, 47, 0.98));
             border: 1px solid rgba(91, 145, 198, 0.9);
             border-right-color: rgba(255, 192, 0, 0.75);
@@ -142,7 +142,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            max-width: 450px; /* Botoes aumentados para acompanhar a caixa */
+            max-width: 450px; 
             margin: 0 auto;
         }
 
@@ -255,6 +255,11 @@
             .container { width: calc(100% - 28px); }
             .grid { grid-template-columns: 1fr; }
             h1 { font-size: 1.3rem; }
+            
+            /* Suaviza as imagens de fundo no celular para melhorar a leitura */
+            .detalhe-lateral-direito, .detalhe-lateral-esquerdo {
+                opacity: 0.15;
+            }
         }
     </style>
 </head>
@@ -277,8 +282,6 @@
             <a href="Modelo_Relatorio_Mensal.docx" download class="btn btn-outline">📥 Baixar Arquivo do Relatório Mensal</a>
         </div>
     </div>
-
-    <img src="img/imagem_3-removebg-preview.png" alt="Textura Amarela Lateral" class="detalhe-lateral-esquerdo">
 
     <!-- PÁGINA 2: FORMULÁRIOS -->
     <div id="page-formularios" class="page container">
@@ -332,7 +335,6 @@
 
         <button class="btn-voltar" onclick="navegar('page-home')">⬅ Voltar ao Início</button>
     </div>
-
 
     <!-- PÁGINA 3: E-MAILS -->
     <div id="page-emails" class="page container">
